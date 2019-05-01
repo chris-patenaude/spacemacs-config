@@ -326,32 +326,46 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; ----------------
   ;; Org Mode Config
+  ;; ----------------
   (setq org-default-notes-file "~/Dropbox/Notes/notes.org")
 
+  ;; ---------------------
   ;; org-capture templates
+  ;; ---------------------
   (setq org-capture-templates
         (quote ()))
 
+  ;; Work TODO template (Prompts for Tag)
   (add-to-list 'org-capture-templates
                '("w" "Work-related Task"  entry
-                 (file "~/Dropbox/Notes/work.org")
-                 "* TODO %?" :empty-lines 1))
+                 (file+headline "~/Dropbox/Notes/work.org" "Tasks")
+                 "* TODO %?\t%^g\n%U\n%a\n"))
 
+  ;; Personal TODO template (Prompts for Tag)
   (add-to-list 'org-capture-templates
                '("t" "todo" entry
-                (file org-default-notes-file)
-                "* TODO %?\n%U\n%a\n"))
+                 (file+headline org-default-notes-file "Tasks")
+                 "* TODO %?\t%^g\n%U\n%a\n"))
 
+  ;; Idea template
   (add-to-list 'org-capture-templates
                '("i" "idea" entry
-                 (file org-default-notes-file)
+                 (file+headline org-default-notes-file "Ideas")
                  "* %? :IDEA:\n%U\n%a\n"))
 
+  ;; Note template
   (add-to-list 'org-capture-templates
                '("n" "note" entry
-                 (file org-default-notes-file)
+                 (file+headline org-default-notes-file "Notes")
                  "* %? :NOTE:\n%U\n%a\n"))
+
+  ;; Code Snippet template (Prompts for Tag)
+  (add-to-list 'org-capture-templates
+               '("c" "Code Snippet" entry
+                 (file+headline org-default-notes-file "Code Snippets")
+                 "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC"))
 
   )
 
