@@ -331,23 +331,28 @@ you should place your code here."
 
   ;; org-capture templates
   (setq org-capture-templates
-        (quote (("t" "todo" entry (file org-default-notes-file)
-                 "* TODO %?\n%U\n%a\n")
-                ("m" "meeting" entry (file org-default-notes-file)
-                 "* MEETING with %? :MEETING:\n%U")
-                ("i" "idea" entry (file org-default-notes-file)
-                 "* %? :IDEA:\n%U\n%a\n")
-                ("n" "note" entry (file org-default-notes-file)
-                 "* %? :NOTE:\n%U\n%a\n")
-                ("h" "habit" entry (file rae/org-default-notes-file)
-                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+        (quote ()))
 
   (add-to-list 'org-capture-templates
                '("w" "Work-related Task"  entry
                  (file "~/Dropbox/Notes/work.org")
                  "* TODO %?" :empty-lines 1))
 
-  ;; end user-config
+  (add-to-list 'org-capture-templates
+               '("t" "todo" entry
+                (file org-default-notes-file)
+                "* TODO %?\n%U\n%a\n"))
+
+  (add-to-list 'org-capture-templates
+               '("i" "idea" entry
+                 (file org-default-notes-file)
+                 "* %? :IDEA:\n%U\n%a\n"))
+
+  (add-to-list 'org-capture-templates
+               '("n" "note" entry
+                 (file org-default-notes-file)
+                 "* %? :NOTE:\n%U\n%a\n"))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
