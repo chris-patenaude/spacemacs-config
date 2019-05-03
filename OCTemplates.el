@@ -10,13 +10,13 @@
 (add-to-list 'org-capture-templates
              '("tw" "Work-related Task"  entry
                (file+headline "~/Dropbox/Notes/work.org" "Tasks")
-               "* TODO %?\t%^g\n%U\n%a\n"))
+               "* TODO %?\n%U\n%a\n"))
 
 ;; Personal TODO template (Prompts for Tag)
 (add-to-list 'org-capture-templates
              '("tt" "todo" entry
                (file+headline org-default-notes-file "Tasks")
-               "* TODO %?\t%^g\n%U\n%a\n"))
+               "* TODO %?\n%U\n%a\n"))
 
 ;; Idea template
 (add-to-list 'org-capture-templates
