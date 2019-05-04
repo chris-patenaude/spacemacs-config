@@ -34,6 +34,6 @@
 (add-to-list 'org-capture-templates
              '("c" "Code Snippet" entry
                (file+headline org-default-notes-file "Code Snippets")
-               "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC"))
+               "* %?\t:CODE:%^{Tag|SNIPPET|CS340|CS372}:\n#+BEGIN_SRC %^{Language}\n\n#+END_SRC"))
 
 (provide 'OCTemplates)
