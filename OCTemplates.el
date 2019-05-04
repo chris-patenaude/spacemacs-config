@@ -1,3 +1,8 @@
+;; template insertion file paths
+(setq org-default-notes-file "~/Dropbox/Notes/notes.org")
+(setq my-events-file "~/Dropbox/Notes/events.org")
+(setq my-tasks-file "~/Dropbox/Notes/tasks.org")
+
 ;; Create the template list
 (setq org-capture-templates
       (quote ()))
@@ -6,17 +11,17 @@
 (add-to-list 'org-capture-templates
              '("t" "Task"))
 
-;; Work TODO template (Prompts for Tag)
+;; Work task template
 (add-to-list 'org-capture-templates
-             '("tw" "Work-related Task"  entry
-               (file+headline "~/Dropbox/Notes/work.org" "Tasks")
-               "* TODO %?\n%U\n%a\n"))
+             '("tw" "Work Task"  entry
+               (file+headline my-tasks-file "Work")
+               "* TODO %?\t:TASK:WORK:\n%U\n%a\n"))
 
-;; Personal TODO template (Prompts for Tag)
+;; Personal personal template
 (add-to-list 'org-capture-templates
-             '("tt" "todo" entry
-               (file+headline org-default-notes-file "Tasks")
-               "* TODO %?\n%U\n%a\n"))
+             '("tt" "General" entry
+               (file+headline my-tasks-file "General")
+               "* TODO %?\t:TASK:GENERAL:\n%U\n%a\n"))
 
 ;; Idea template
 (add-to-list 'org-capture-templates
@@ -24,16 +29,22 @@
                (file+headline org-default-notes-file "Ideas")
                "* %? :IDEA:\n%U\n%a\n"))
 
-;; Note template
+;; Note template (prompts for tags)
 (add-to-list 'org-capture-templates
              '("n" "note" entry
                (file+headline org-default-notes-file "Notes")
-               "* %? :NOTE:\n%U\n%a\n"))
+               "* %? \t:NOTE:%^{Tag|GENERAL|SCHOOL|WAMS|DnD}:\n%U\n%a\n"))
 
 ;; Code Snippet template (Prompts for Tag)
 (add-to-list 'org-capture-templates
              '("c" "Code Snippet" entry
                (file+headline org-default-notes-file "Code Snippets")
-               "* %?\t:CODE:%^{Tag|SNIPPET|CS340|CS372}:\n#+BEGIN_SRC %^{Language}\n\n#+END_SRC"))
+               "* %?\t:CODE:%^{Tag|GENERAL|WORK|SCHOOL}:\n#+BEGIN_SRC %^{Language}\n\n#+END_SRC"))
+
+;; Event template (Prompts for date and time)
+(add-to-list 'org-capture-templates
+             '("e" "Event" entry
+               (file+headline my-events-file "Events")
+               "* %?\t:EVENT:\n%^{Event}t"))
 
 (provide 'OCTemplates)
