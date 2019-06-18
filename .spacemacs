@@ -63,6 +63,8 @@ values."
      emacs-lisp
      python
      javascript
+     typescript
+     react
      ruby
      php
      sql
@@ -143,7 +145,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(dakrone
+   dotspacemacs-themes '(birds-of-paradise-plus
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -321,6 +323,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (push "~/Repos/spacemacs/" load-path)
   )
 
+(defun my-setup-indent (n)
+  "Sets the indent for several languages"
+  ;; java/c/c++
+  (setq c-basic-offset n)
+  ;; web development
+  (setq coffee-tab-width n) ; coffeescript
+  (setq javascript-indent-level n) ; javascript-mode
+  (setq js-indent-level n) ; js-mode
+  (setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset n) ; web-mode, css in html file
+  (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
+  (setq css-indent-offset n) ; css-mode
+  )
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -332,6 +349,8 @@ you should place your code here."
   (setq org-agenda-files (quote("~/Dropbox/Notes")))
   ;; org capture config
   (require 'OCTemplates)
+  ;; Sets global indent
+  (my-setup-indent 2)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
